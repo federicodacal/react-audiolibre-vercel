@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background: linear-gradient(to right, #e2a3f1, #8760a8); /* Gradiente similar al de la navbar */
+  background-attachment: fixed; /* Fondo fijo */
+  background-size: cover;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}

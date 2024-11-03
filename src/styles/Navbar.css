@@ -1,0 +1,47 @@
+/* Navbar.css */
+
+.custom-navbar {
+    background: linear-gradient(to right, violet, darkblue);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.3rem; /* Tamaño de fuente para el nombre de la aplicación */
+    color: white; /* Color del texto */
+}
+
+.nav-link {
+    font-weight: bold; /* Texto en negrita */
+    color: white; /* Color del texto */
+    font-size: 1.2rem; /* Tamaño de fuente de los enlaces */
+    margin-left: 20px; /* Espaciado entre los elementos */
+}
+
+.nav-link:hover {
+    color: #ffcc00; /* Color al pasar el mouse */
+}
+
+.navbar-nav {
+    width: 100%; /* Asegura que ocupa todo el ancho */
+    display: flex;
+    justify-content: flex-start; /* Alinea los elementos a la izquierda */
+}
+
+/* Nueva clase para alinear Logout a la derecha */
+.logout-item {
+    margin-left: auto; /* Mueve el Logout al extremo derecho */
+}
+
+/* Para asegurar que todos los elementos se alineen correctamente */
+.navbar-collapse {
+    display: flex;
+    justify-content: space-between; /* Espaciado entre los elementos */
+}
+
+.navbar-toggler {
+    border-color: white; /* Color del borde del toggler */
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* Cambia el color de la icono de toggler */
+}
