@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Navbar from './components/Navbar';
 import Subscriptions from './components/Subscriptions';
+import SubscriptionForm from './components/SubscriptionForm';
 
 const App = () => {
     return (
@@ -11,6 +12,8 @@ const App = () => {
         <Navbar />
         <Routes>
             <Route path="/suscripciones" element={<Subscriptions />} />
+            <Route path="/suscripciones/:id" element={<SubscriptionForm />} />
+            <Route path="/suscripciones/nueva" element={<SubscriptionForm />} />
             {/* Aquí puedes agregar otras rutas */}
         </Routes>
       </Router>
