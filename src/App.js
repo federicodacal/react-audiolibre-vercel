@@ -5,6 +5,8 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Subscriptions from './components/Subscriptions';
 import SubscriptionForm from './components/SubscriptionForm';
+import Carrousel from './components/Carrousel';
+import CarrouselForm from './components/CarrouselForm';
 
 const App = () => {
     return (
@@ -14,7 +16,9 @@ const App = () => {
             <Route path="/suscripciones" element={<Subscriptions />} />
             <Route path="/suscripciones/:id" element={<SubscriptionForm />} />
             <Route path="/suscripciones/nueva" element={<SubscriptionForm />} />
-            {/* Aquí puedes agregar otras rutas */}
+            <Route path="/carrousel" element={<Carrousel />} />
+            <Route path="/carrousel/:id" element={<CarrouselForm />} />
+            <Route path="/carrousel/nueva" element={<CarrouselForm />} />
         </Routes>
       </Router>
     );

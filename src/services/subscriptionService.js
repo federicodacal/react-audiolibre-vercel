@@ -48,7 +48,7 @@ export const deleteSubscription = async (id) => {
         const response = await axios.delete(`${BASE_URL}/eliminar/${id}`);
         return response.data; 
     } catch (error) {
-        console.error('Error al actualizar la suscripción:', error);
+        console.error('Error al eliminar la suscripción:', error);
         throw error;
     }
 };

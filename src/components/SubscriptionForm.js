@@ -1,4 +1,3 @@
-// src/components/SubscriptionForm.js
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getSubscriptionById, updateSubscription, deleteSubscription, createSubscription } from '../services/subscriptionService';
