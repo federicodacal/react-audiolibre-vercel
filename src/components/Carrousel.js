@@ -43,8 +43,8 @@ const Carrousel = () => {
                         <p><strong>Título</strong>: {carrousel.titulo}</p>
                         <p><strong>Orden:</strong> {carrousel.orden}</p>
                         <p><strong>Descripción:</strong> {carrousel.descripcion}</p>
-                        <p><strong>File id:</strong> {carrousel.file_id}</p>
-                        <p><strong>Imagen:</strong> {carrousel.img}</p>
+                        <p><strong>Ruta:</strong> {carrousel.file_id}</p>
+                        <img crossorigin="anonymous" src={carrousel.imgUrl} alt={carrousel.titulo} style={{ width: '100%' }} />
                         <button className="view-details-btn" onClick={() => handleViewDetails(carrousel.id)}>
                             <FaSearch /> {/* Icono de lupa */}
                         </button>

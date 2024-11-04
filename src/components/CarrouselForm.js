@@ -13,6 +13,7 @@ const CarrouselForm = () => {
         descripcion: '',
         img: null,
     });
+    const [imgPreview, setImgPreview] = useState(null);
 
     useEffect(() => {
         if (id) {
@@ -20,6 +21,12 @@ const CarrouselForm = () => {
                 try {
                     const data = await getCarrouselElementById(id);
                     setCarrousel(data);
+                    if(data.imgUrl) {
+                        setImgPreview(data.imgUrl);
+                    }
+                    else {
+                        setImgPreview(null);
+                    } 
                 } catch (error) {
                     console.error('Error al cargar el elemnto del carrousel:', error);
                 }
@@ -38,6 +45,7 @@ const CarrouselForm = () => {
         const file = e.target.files[0];
         if (file && file.type.startsWith("image/")) {
             setCarrousel({ ...carrousel, img: file });
+            setImgPreview(URL.createObjectURL(file)); // Establecer la URL de previsualización
         } else {
             alert("Por favor, selecciona solo archivos de imagen (jpg, jpeg, png, etc.).");
             e.target.value = ""; // Resetea el input si el archivo no es una imagen
@@ -105,6 +113,7 @@ const CarrouselForm = () => {
                 <div>
                     <label>Img:</label>
                     <input type="file" name="img" accept="image/*" onChange={handleFileChange} />
+                    {imgPreview && <img crossorigin="anonymous" src={imgPreview} alt="Previsualización" className="img-preview" />}
                 </div>
                 <div className="button-container">
                     {id ? (

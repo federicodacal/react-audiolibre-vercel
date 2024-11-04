@@ -102,3 +102,10 @@ button {
 .create-button:hover {
     background-color: #1e05ac; /* Color de fondo al pasar el mouse para crear */
 }
+
+.img-preview {
+    max-width: 200px; /* Ajusta el tamaño según tus necesidades */
+    max-height: 200px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+}

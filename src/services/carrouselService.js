@@ -5,6 +5,7 @@ const BASE_URL = 'http://localhost:5000/api/carrousel';
 export const getCarrousel = async () => {
     try {
         const response = await axios.get(BASE_URL);
+        console.log(response.data);
         return response.data;
     } catch (error) {
         console.error('Error al obtener el carrousel:', error);
@@ -15,6 +16,7 @@ export const getCarrousel = async () => {
 export const getCarrouselElementById = async (id) => {
     try {
         const response = await axios.get(`${BASE_URL}/${id}`);
+        console.log('Get by id:', response.data);
         return response.data;
     } catch (error) {
         console.error('Error al obtener el elemento del carrousel:', error);
