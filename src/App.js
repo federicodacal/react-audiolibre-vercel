@@ -9,6 +9,10 @@ import Carrousel from './components/Carrousel';
 import CarrouselForm from './components/CarrouselForm';
 import Moderador from './components/Moderadores';
 import ModeradorForm from './components/ModeradorForm';
+import Categoria from './components/Categorias';
+import CategoriaForm from './components/CategoriaForm';
+//import Genero from './components/Genero';
+//import GeneroForm from './components/GeneroForm';
 
 const App = () => {
     return (
@@ -26,6 +30,17 @@ const App = () => {
             <Route path="/moderadores" element={<Moderador />} />
             <Route path="/moderadores/:id" element={<ModeradorForm />} />
             <Route path="/moderadores/nuevo" element={<ModeradorForm />} />
+
+            <Route path="/categorias" element={<Categoria />} />
+            <Route path="/categorias/:id" element={<CategoriaForm />} />
+            <Route path="/categorias/nuevo" element={<CategoriaForm />} />
+
+            { /*  
+            <Route path="/generos" element={<Categoria />} />
+            <Route path="/generos/:id" element={<CategoriaForm />} />
+            <Route path="/generos/nuevo" element={<CategoriaForm />} />
+            */ }
+            
 
         </Routes>
       </Router>

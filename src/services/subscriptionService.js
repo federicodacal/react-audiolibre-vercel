@@ -17,7 +17,7 @@ export const getSubscriptionById = async (id) => {
         const response = await axios.get(`${BASE_URL}/${id}`);
         return response.data;
     } catch (error) {
-        console.error('Error al obtener las suscripciones:', error);
+        console.error('Error al obtener la suscripcion:', error);
         throw error;
     }
 };

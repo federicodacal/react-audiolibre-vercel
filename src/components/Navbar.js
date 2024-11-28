@@ -22,10 +22,10 @@ const Navbar = () => {
                             <Link className="nav-link" to="/moderadores">Moderadores</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/genero">Géneros</Link>
+                            <Link className="nav-link" to="/generos">Géneros</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/categoria">Categorías</Link>
+                            <Link className="nav-link" to="/categorias">Categorías</Link>
                         </li>
                         <li className="nav-item logout-item">
                             <Link className="nav-link" to="/logout">Logout</Link> 

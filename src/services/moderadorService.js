@@ -17,7 +17,7 @@ export const getModById = async (id) => {
         const response = await axios.get(`${BASE_URL}/${id}`);
         return response.data;
     } catch (error) {
-        console.error('Error al obtener los moderadores:', error);
+        console.error('Error al obtener el moderador:', error);
         throw error;
     }
 };

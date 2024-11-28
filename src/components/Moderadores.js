@@ -8,7 +8,7 @@ const Moderadores = () => {
     const [moderadores, setModeradores] = useState([]);
     const navigate = useNavigate();
 
-    // Función para obtener los datos de suscripciones desde la API
+    // Función para obtener los datos de moderadores desde la API
     useEffect(() => {
         const fetchModeradores = async () => {
             try {
