@@ -1,0 +1,104 @@
+.moderador-form-container {
+    padding: 20px;
+    background: linear-gradient(to right, #f0f0f0, #e0e0e0); /* Gradiente de fondo */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px; /* Limitar el ancho del formulario */
+    margin: 20px auto; /* Agregar margen en la parte superior e inferior */
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px; /* Menor margen */
+}
+
+.back-button svg {
+    margin-right: 5px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 10px; /* Menor margen */
+}
+
+h4 {
+    text-align: center;
+    margin: 10px 0; /* Margen alrededor del ID */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaciado más pequeño entre los campos */
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px; /* Espaciado entre label y input */
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 5px; /* Menos padding para inputs */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%; /* Ajustar el ancho de los inputs */
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #007bff; /* Color de borde al enfocar */
+    outline: none; /* Quitar el borde por defecto */
+}
+
+.button-group {
+    display: flex; /* Usar flexbox para los botones */
+    justify-content: space-between; /* Espaciar los botones */
+    margin-top: 10px; /* Espacio arriba de los botones */
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    flex: 1; /* Para que ambos botones ocupen el mismo espacio */
+    margin-top: 0.5em; /* Para que ambos botones ocupen el mismo espacio */
+    margin: 1 5px; /* Espacio entre botones */
+}
+
+.update-button {
+    background-color: #ffc107; /* Color de fondo para modificar */
+}
+
+.update-button:hover {
+    background-color: #e0a800; /* Color de fondo al pasar el mouse para modificar */
+}
+
+.delete-button {
+    background-color: #dc3545; /* Color de fondo para eliminar */
+}
+
+.delete-button:hover {
+    background-color: #c82333; /* Color de fondo al pasar el mouse para eliminar */
+}
+
+.create-button {
+    background-color: #4011c4; /* Color de fondo para crear */
+}
+
+.create-button:hover {
+    background-color: #1e05ac; /* Color de fondo al pasar el mouse para crear */
+}
