@@ -38,11 +38,10 @@ const Subscriptions = () => {
             <div className="subscriptions-list">
                 {subscriptions.map((subscription) => (
                     <div className="subscription-card" key={subscription._id}>
-                        <h5 className="centered-text"><strong>{subscription.tipo.toUpperCase()}</strong></h5>
-                        <p><strong>ID</strong>: {subscription.id}</p>
-                        <p><strong>Tipo:</strong> {subscription.tipo}</p>
-                        <p><strong>Duración (meses):</strong> {subscription.duracion_meses}</p>
-                        <p><strong>Precio $:</strong> {subscription.precio}</p>
+                        <h5 className="centered-text"><strong>{subscription.titulo.toUpperCase()}</strong></h5>
+                        <p><strong>Titulo:</strong> {subscription.titulo}</p>
+                        <p><strong>Duración (dias):</strong> {subscription.duracion_dias}</p>
+                        <p><strong>Precio $ (costo mensual):</strong> {subscription.precio}</p>
                         <p><strong>Porcentaje Plataforma:</strong> {subscription.porcentaje_plataforma}%</p>
                         <p><strong>Fecha Creación:</strong> {new Date(subscription.fecha_creacion).toLocaleString()}</p>
                         <p><strong>Fecha Modificación:</strong> {new Date(subscription.fecha_modificacion).toLocaleString()}</p>

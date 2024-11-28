@@ -8,10 +8,10 @@ const SubscriptionForm = () => {
     const { id } = useParams(); // Obtener el ID de la URL
     const navigate = useNavigate();
     const [subscription, setSubscription] = useState({
-        tipo: '',
-        duracion_meses: '',
+        titulo: '',
+        duracion_dias: '',
         precio: '',
-        porcentaje_plataforma: '',
+        porcentaje_plataforma: ''
     });
 
     useEffect(() => {
@@ -70,15 +70,15 @@ const SubscriptionForm = () => {
             {id && <h4>ID: {id}</h4>} 
             <form>
                 <div>
-                    <label>Tipo</label>
-                    <input type="text" name="tipo" value={subscription.tipo} onChange={handleChange} />
+                    <label>Titulo</label>
+                    <input type="text" name="titulo" value={subscription.titulo} onChange={handleChange} />
                 </div>
                 <div>
-                    <label>Duración (meses)</label>
-                    <input type="number" name="duracion_meses" value={subscription.duracion_meses} onChange={handleChange} />
+                    <label>Duración (dias)</label>
+                    <input type="number" name="duracion_dias" value={subscription.duracion_dias} onChange={handleChange} />
                 </div>
                 <div>
-                    <label>Precio $</label>
+                    <label>Precio $ (costo mensual)</label>
                     <input type="number" name="precio" value={subscription.precio} onChange={handleChange} />
                 </div>
                 <div>

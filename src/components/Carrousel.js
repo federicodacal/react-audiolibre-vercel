@@ -39,9 +39,7 @@ const Carrousel = () => {
                 {carrousel.map((carrousel) => (
                     <div className="carrousel-card" key={carrousel._id}>
                         <h5 className="centered-text"><strong>{carrousel.titulo.toUpperCase()}</strong></h5>
-                        <p><strong>ID</strong>: {carrousel.id}</p>
                         <p><strong>Título</strong>: {carrousel.titulo}</p>
-                        <p><strong>Orden:</strong> {carrousel.orden}</p>
                         <p><strong>Descripción:</strong> {carrousel.descripcion}</p>
                         <p><strong>Ruta:</strong> {carrousel.file_id}</p>
                         <img crossorigin="anonymous" src={carrousel.imgUrl} alt={carrousel.titulo} style={{ width: '100%' }} />

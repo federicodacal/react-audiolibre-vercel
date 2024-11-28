@@ -19,6 +19,7 @@ const App = () => {
             <Route path="/carrousel" element={<Carrousel />} />
             <Route path="/carrousel/:id" element={<CarrouselForm />} />
             <Route path="/carrousel/nueva" element={<CarrouselForm />} />
+
         </Routes>
       </Router>
     );

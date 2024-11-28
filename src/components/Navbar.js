@@ -1,5 +1,3 @@
-// Navbar.js
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Navbar.css'; 
@@ -30,10 +28,10 @@ const Navbar = () => {
                             <Link className="nav-link" to="/categoria">Categorías</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/test-audio">Test Audio</Link>
+                            <Link className="nav-link" to="/audios">Test Audio</Link>
                         </li>
                         <li className="nav-item logout-item">
-                            <Link className="nav-link" to="/logout">Logout</Link> {/* Logout al final */}
+                            <Link className="nav-link" to="/logout">Logout</Link> 
                         </li>
                     </ul>
                 </div>

@@ -92,15 +92,10 @@ const CarrouselForm = () => {
                 <FaArrowLeft /> Volver
             </div>
             <h2>{id ? 'Editar Elemento Carrousel' : 'Agregar Elemento Carrousel'}</h2>
-            {id && <h4>ID: {id}</h4>} 
             <form>
                 <div>
                     <label>Titulo</label>
                     <input type="text" name="titulo" value={carrousel.titulo} onChange={handleChange} />
-                </div>
-                <div>
-                    <label>Orden</label>
-                    <input type="number" name="orden" value={carrousel.orden} onChange={handleChange} />
                 </div>
                 <div>
                     <label>Descripción</label>
