@@ -11,8 +11,8 @@ import Moderador from './components/Moderadores';
 import ModeradorForm from './components/ModeradorForm';
 import Categoria from './components/Categorias';
 import CategoriaForm from './components/CategoriaForm';
-//import Genero from './components/Genero';
-//import GeneroForm from './components/GeneroForm';
+import Genero from './components/Generos';
+import GeneroForm from './components/GeneroForm';
 
 const App = () => {
     return (
@@ -34,13 +34,10 @@ const App = () => {
             <Route path="/categorias" element={<Categoria />} />
             <Route path="/categorias/:id" element={<CategoriaForm />} />
             <Route path="/categorias/nuevo" element={<CategoriaForm />} />
-
-            { /*  
-            <Route path="/generos" element={<Categoria />} />
-            <Route path="/generos/:id" element={<CategoriaForm />} />
-            <Route path="/generos/nuevo" element={<CategoriaForm />} />
-            */ }
-            
+  
+            <Route path="/generos" element={<Genero />} />
+            <Route path="/generos/:id" element={<GeneroForm />} />
+            <Route path="/generos/nuevo" element={<GeneroForm />} />
 
         </Routes>
       </Router>
