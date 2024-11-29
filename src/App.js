@@ -2,7 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Importa BrowserRouter como Router
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { AuthProvider } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
+import Login from './components/Login';
 import Subscriptions from './components/Subscriptions';
 import SubscriptionForm from './components/SubscriptionForm';
 import Carrousel from './components/Carrousel';
@@ -13,33 +15,138 @@ import Categoria from './components/Categorias';
 import CategoriaForm from './components/CategoriaForm';
 import Genero from './components/Generos';
 import GeneroForm from './components/GeneroForm';
+import Moderadores from './components/Moderadores';
+import PrivateRoute from './components/PrivateRoute';
 
 const App = () => {
     return (
       <Router>
-        <Navbar />
-        <Routes>
-            <Route path="/suscripciones" element={<Subscriptions />} />
-            <Route path="/suscripciones/:id" element={<SubscriptionForm />} />
-            <Route path="/suscripciones/nueva" element={<SubscriptionForm />} />
+          <AuthProvider>
+          <Navbar />
+          <Routes>
+              <Route path="/login" element={<Login />} />
 
-            <Route path="/carrousel" element={<Carrousel />} />
-            <Route path="/carrousel/:id" element={<CarrouselForm />} />
-            <Route path="/carrousel/nueva" element={<CarrouselForm />} />
+              <Route path="/suscripciones" element=
+                {
+                  <PrivateRoute>
+                    <Subscriptions />
+                  </PrivateRoute>
+                } 
+              />
 
-            <Route path="/moderadores" element={<Moderador />} />
-            <Route path="/moderadores/:id" element={<ModeradorForm />} />
-            <Route path="/moderadores/nuevo" element={<ModeradorForm />} />
+              <Route path="/suscripciones/:id" element=
+                {
+                  <PrivateRoute>
+                    <SubscriptionForm />
+                  </PrivateRoute>
+                } 
+              />
 
-            <Route path="/categorias" element={<Categoria />} />
-            <Route path="/categorias/:id" element={<CategoriaForm />} />
-            <Route path="/categorias/nuevo" element={<CategoriaForm />} />
-  
-            <Route path="/generos" element={<Genero />} />
-            <Route path="/generos/:id" element={<GeneroForm />} />
-            <Route path="/generos/nuevo" element={<GeneroForm />} />
+              <Route path="/suscripciones/nueva" element=
+                {
+                  <PrivateRoute>
+                    <SubscriptionForm />
+                  </PrivateRoute>
+                } 
+              />
 
-        </Routes>
+              <Route path="/carrousel" element=
+                {
+                  <PrivateRoute>
+                    <Carrousel />
+                  </PrivateRoute>
+                } 
+              />
+
+              <Route path="/carrousel/:id" element=
+                {
+                  <PrivateRoute>
+                    <CarrouselForm />
+                  </PrivateRoute>
+                } 
+              />
+
+              <Route path="/carrousel/nueva" element=
+                {
+                  <PrivateRoute>
+                    <CarrouselForm />
+                  </PrivateRoute>
+                } 
+              />
+
+              <Route path="/moderadores" element=
+                {
+                  <PrivateRoute>
+                    <Moderador />
+                  </PrivateRoute>
+                } 
+              />
+
+              <Route path="/moderadores/:id" element=
+                {
+                  <PrivateRoute>
+                    <ModeradorForm />
+                  </PrivateRoute>
+                } 
+              />
+
+              <Route path="/moderadores/nueva" element=
+                {
+                  <PrivateRoute>
+                    <ModeradorForm />
+                  </PrivateRoute>
+                } 
+              />
+
+              <Route path="/categorias" element=
+                {
+                  <PrivateRoute>
+                    <Categoria />
+                  </PrivateRoute>
+                } 
+              />
+
+              <Route path="/categorias/:id" element=
+                {
+                  <PrivateRoute>
+                    <CategoriaForm />
+                  </PrivateRoute>
+                } 
+              />
+
+              <Route path="/categorias/nueva" element=
+                {
+                  <PrivateRoute>
+                    <CategoriaForm />
+                  </PrivateRoute>
+                } 
+              />
+
+              <Route path="/generos" element=
+                {
+                  <PrivateRoute>
+                    <Genero />
+                  </PrivateRoute>
+                } 
+              />
+
+              <Route path="/generos/:id" element=
+                {
+                  <PrivateRoute>
+                    <GeneroForm />
+                  </PrivateRoute>
+                } 
+              />
+
+              <Route path="/generos/nueva" element=
+                {
+                  <PrivateRoute>
+                    <GeneroForm />
+                  </PrivateRoute>
+                } 
+              />
+          </Routes>
+      </AuthProvider>
       </Router>
     );
 };

@@ -32,7 +32,7 @@ const Categorias = () => {
 
     return (
         <div className="categoria-container">
-            <h2>Categoria</h2>
+            <h2>Categorias</h2>
             <button className="add-categoria-btn" onClick={handleAddNewCategoria}>Agregar Nueva Categoria</button>
 
             <div className="categoria-list">

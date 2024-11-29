@@ -32,7 +32,7 @@ const Generos = () => {
 
     return (
         <div className="genero-container">
-            <h2>Genero</h2>
+            <h2>Generos</h2>
             <button className="add-genero-btn" onClick={handleAddNewGenero}>Agregar Nuevo Genero</button>
 
             <div className="genero-list">

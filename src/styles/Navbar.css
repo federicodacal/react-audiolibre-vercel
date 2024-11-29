@@ -11,10 +11,11 @@
 }
 
 .nav-link {
-    font-weight: bold; /* Texto en negrita */
-    color: white; /* Color del texto */
-    font-size: 1.2rem; /* Tamaño de fuente de los enlaces */
-    margin-left: 20px; /* Espaciado entre los elementos */
+    font-weight: bold;
+    color: white;
+    font-size: 1.2rem;
+    margin-left: 10px; /* Espaciado entre los elementos */
+    line-height: 50px; 
 }
 
 .nav-link:hover {
@@ -22,9 +23,10 @@
 }
 
 .navbar-nav {
-    width: 100%; /* Asegura que ocupa todo el ancho */
     display: flex;
+    flex-grow: 1; /* Hace que los enlaces ocupen todo el espacio disponible */
     justify-content: flex-start; /* Alinea los elementos a la izquierda */
+    margin-bottom: 0; /* Alinea los elementos a la izquierda */
 }
 
 /* Nueva clase para alinear Logout a la derecha */
@@ -36,6 +38,7 @@
 .navbar-collapse {
     display: flex;
     justify-content: space-between; /* Espaciado entre los elementos */
+    align-items: center;
 }
 
 .navbar-toggler {
