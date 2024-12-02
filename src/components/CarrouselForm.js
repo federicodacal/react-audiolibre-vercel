@@ -54,7 +54,9 @@ const CarrouselForm = () => {
 
     const handleUpdate = async () => {
         try {
-            await updateCarrouselElement(id, carrousel);
+            const response = await updateCarrouselElement(id, carrousel);
+            console.log('update: ', response.data);
+            console.log('carrousel: ', carrousel);
             navigate('/carrousel'); // Redirigir a la lista de carrousel
         } catch (error) {
             console.error('Error al actualizar carrousel:', error);
@@ -107,9 +109,23 @@ const CarrouselForm = () => {
                 </div>
                 <div>
                     <label>Img:</label>
-                    <input type="file" name="img" accept="image/*" onChange={handleFileChange} />
-                    {imgPreview && <img crossorigin="anonymous" src={imgPreview} alt="Previsualización" className="img-preview" />}
+                    {!id ? (
+                        <>
+                            <input type="file" name="img" accept="image/*" onChange={handleFileChange} />
+                            {imgPreview ? (
+                                <img crossorigin="anonymous" src={imgPreview} alt="Previsualización" className="img-preview" />
+                            ) : (
+                                <p>No hay imagen cargada</p>
+                            )}
+                        </>
+                    ) : (
+                        imgPreview && (
+                            <img crossorigin="anonymous" src={imgPreview} alt="Previsualización" className="img-preview" />
+                        )
+                    )}
                 </div>
+
+
                 <div className="button-container">
                     {id ? (
                         <>
