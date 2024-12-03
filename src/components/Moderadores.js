@@ -22,8 +22,8 @@ const Moderadores = () => {
         fetchModeradores();
     }, []);
 
-    const handleViewDetails = (id) => {
-        navigate(`/moderadores/${id}`); // Redirigir al formulario del moderador
+    const handleViewDetails = (ID) => {
+        navigate(`/moderadores/${ID}`); // Redirigir al formulario del moderador
     };
 
     const handleAddNewModerador = () => {
@@ -37,15 +37,16 @@ const Moderadores = () => {
 
             <div className="moderador-list">
                 {moderadores.map((moderador) => (
-                    <div className="moderador-card" key={moderador._id}>
-                        <h5 className="centered-text"><strong>{moderador.full_name.toUpperCase()}</strong></h5>
-                        <p><strong>Nombre completo:</strong> {moderador.full_name}</p>
+                    <div className="moderador-card" key={moderador.ID}>
+                        <h5 className="centered-text"><strong>{moderador.user_detail.full_name}</strong></h5>
+                        <p><strong>Nombre completo:</strong> {moderador.user_detail.full_name}</p>
                         <p><strong>Email:</strong> {moderador.email}</p>
-                        <p><strong>Telefono:</strong> {moderador.phone_number}</p>
+                        <p><strong>Telefono:</strong> {moderador.user_detail.phone_number}</p>
+                        <p><strong>DNI:</strong> {moderador.user_detail.personal_ID}</p>
                         <p><strong>Estado:</strong> {moderador.state}</p>
-                        <p><strong>Fecha Creación:</strong> {new Date(moderador.fecha_creacion).toLocaleString()}</p>
-                        <p><strong>Fecha Modificación:</strong> {new Date(moderador.fecha_modificacion).toLocaleString()}</p>
-                        <button className="view-details-btn" onClick={() => handleViewDetails(moderador.id)}>
+                        <p><strong>Fecha Creación:</strong> {new Date(moderador.created_at).toLocaleString()}</p>
+                        <p><strong>Fecha Modificación:</strong> {new Date(moderador.modified_at).toLocaleString()}</p>
+                        <button className="view-details-btn" onClick={() => handleViewDetails(moderador.ID)}>
                             <FaSearch /> {/* Icono de lupa */}
                         </button>
                     </div>

@@ -19,19 +19,20 @@
     background-color: #6a1b9a;
 }
 
-.moderadores-list {
+.moderador-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: center;
 }
 
 .moderador-card {
-    background-color: #f3f3f3;
+    width: calc(40% - 20px);
+    background-color: #fff;
     padding: 15px;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 250px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
     position: relative;
 }
 

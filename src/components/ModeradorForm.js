@@ -6,13 +6,16 @@ import '../styles/ModeradorForm.css';
 
 const ModeradorForm = () => {
     const { id } = useParams(); // Obtener el ID de la URL
+    const isEditing = id && id !== 'nuevo';
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
     const [moderador, setModerador] = useState({
         full_name: '',
         email: '',
         pwd: '',
         phone_number: '',
-        state: ''
+        username: '',
+        personal_ID: ''
     });
 
     useEffect(() => {
@@ -20,13 +23,25 @@ const ModeradorForm = () => {
             const fetchModerador = async () => {
                 try {
                     const data = await getModById(id);
-                    setModerador(data);
+                    setModerador({
+                        full_name: data.user_detail?.full_name || '',
+                        email: data.email || '',
+                        pwd: data.pwd || '',
+                        phone_number: data.user_detail?.phone_number || '',
+                        username: data.user_detail?.username || '',
+                        personal_ID: data.user_detail?.personal_ID || ''
+                    });
+                    setLoading(false);
                 } catch (error) {
                     console.error('Error al cargar el moderador:', error);
+                    setLoading(false);
                 }
             };
 
             fetchModerador();
+        }
+        else {
+            setLoading(false); 
         }
     }, [id]);
 
@@ -37,6 +52,7 @@ const ModeradorForm = () => {
 
     const handleUpdate = async () => {
         try {
+            console.log('mod update ', moderador);
             await updateModerador(id, moderador);
             navigate('/moderadores'); 
         } catch (error) {
@@ -62,13 +78,17 @@ const ModeradorForm = () => {
         }
     };
 
+    if (isEditing && loading) {
+        return <p>Cargando...</p>;
+    }
+
     return (
         <div className="moderador-form-container">
             <div className="back-button" onClick={() => navigate('/moderadores')}>
                 <FaArrowLeft /> Volver
             </div>
-            <h2>{id ? 'Editar Moderador' : 'Agregar Moderador'}</h2>
-            {id && <h4>ID: {id}</h4>} 
+            <h2>{isEditing ? 'Editar Moderador' : 'Agregar Moderador'}</h2>
+            {isEditing && <h4>{moderador.full_name}</h4>} 
             <form>
                 <div>
                     <label>Nombre completo:</label>
@@ -76,29 +96,42 @@ const ModeradorForm = () => {
                 </div>
                 <div>
                     <label>Email:</label>
-                    <input type="text" name="email" value={moderador.email} onChange={handleChange} />
+                    <input type="text" name="email" value={moderador.email} onChange={handleChange} readOnly={isEditing}/>
                 </div>
                 <div>
+                    <label>Username:</label>
+                    <input type="text" name="username" value={moderador.username} onChange={handleChange} />
+                </div>
+                <div>
+                {!isEditing ? (
+                        <>
                     <label>Contraseña:</label>
                     <input type="password" name="pwd" value={moderador.pwd} onChange={handleChange} />
+                        </>
+                    ) : (
+                        <span></span>
+                    )}
                 </div>
                 <div>
                     <label>Telefono:</label>
                     <input type="text" name="phone_number" value={moderador.phone_number} onChange={handleChange} />
                 </div>
                 <div>
-                    <label>Estado:</label>
-                    <input type="text" name="state" value={moderador.state} onChange={handleChange} />
+                    <label>DNI:</label>
+                    <input type="text" name="personal_ID" value={moderador.personal_ID} onChange={handleChange} />
                 </div>
                 <div className="button-container">
-                    {id ? (
+                    {isEditing ? (
                         <>
                             <button type="button" className="update-button" onClick={handleUpdate}>
                                 Modificar
                             </button>
-                            <button type="button" className="delete-button" onClick={handleDelete}>
-                                Eliminar
-                            </button>
+                            {/*
+                                <button type="button" className="delete-button" onClick={handleDelete}>
+                                    Eliminar
+                                </button>
+                                */
+                            }
                         </>
                     ) : (
                         <button type="button" className="create-button" onClick={handleCreate}>
