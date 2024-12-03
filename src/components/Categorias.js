@@ -27,7 +27,7 @@ const Categorias = () => {
     };
 
     const handleAddNewCategoria = () => {
-        navigate('/categorias/nuevo');
+        navigate('/categorias/nueva');
     };
 
     return (

@@ -27,7 +27,7 @@ const Generos = () => {
     };
 
     const handleAddNewGenero = () => {
-        navigate('/generos/nuevo');
+        navigate('/generos/nueva');
     };
 
     return (

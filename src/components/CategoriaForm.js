@@ -6,6 +6,7 @@ import '../styles/CategoriaForm.css';
 
 const CategoriaForm = () => {
     const { id } = useParams(); // Obtener el ID de la URL
+    const isEditing = id && id !== 'nueva';
     const navigate = useNavigate();
     const [categoria, setCategoria] = useState({
         nombre: ''

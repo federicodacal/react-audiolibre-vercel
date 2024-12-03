@@ -90,7 +90,7 @@ const App = () => {
                 } 
               />
 
-              <Route path="/moderadores/nueva" element=
+              <Route path="/moderadores/nuevo" element=
                 {
                   <PrivateRoute>
                     <ModeradorForm />
@@ -138,7 +138,7 @@ const App = () => {
                 } 
               />
 
-              <Route path="/generos/nueva" element=
+              <Route path="/generos/nuevo" element=
                 {
                   <PrivateRoute>
                     <GeneroForm />

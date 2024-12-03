@@ -7,19 +7,22 @@ import '../styles/Moderador.css';
 const Moderadores = () => {
     const [moderadores, setModeradores] = useState([]);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
 
-    // Función para obtener los datos de moderadores desde la API
     useEffect(() => {
         const fetchModeradores = async () => {
             try {
                 const data = await getModeradores();
                 setModeradores(data);
+                setLoading(false);
             } catch (error) {
                 console.error('Error al cargar moderadores:', error);
+                setLoading(false);
             }
         };
-
+        
         fetchModeradores();
+        setLoading(false);
     }, []);
 
     const handleViewDetails = (ID) => {
@@ -29,6 +32,10 @@ const Moderadores = () => {
     const handleAddNewModerador = () => {
         navigate('/moderadores/nuevo');
     };
+
+    if(loading) {
+        <p>Cargando...</p>
+    }
 
     return (
         <div className="moderador-container">

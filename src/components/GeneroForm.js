@@ -6,13 +6,14 @@ import '../styles/GeneroForm.css';
 
 const GeneroForm = () => {
     const { id } = useParams(); // Obtener el ID de la URL
+    const isEditing = id && id !== 'nueva';
     const navigate = useNavigate();
     const [genero, setGenero] = useState({
         nombre: ''
     });
 
     useEffect(() => {
-        if (id) {
+        if (isEditing) {
             const fetchGenero = async () => {
                 try {
                     const data = await getGeneroById(id);
@@ -63,15 +64,15 @@ const GeneroForm = () => {
             <div className="back-button" onClick={() => navigate('/generos')}>
                 <FaArrowLeft /> Volver
             </div>
-            <h2>{id ? 'Editar Genero' : 'Agregar Genero'}</h2>
-            {id && <h4>ID: {id}</h4>} 
+            <h2>{isEditing ? 'Editar Genero' : 'Agregar Genero'}</h2>
+            {isEditing && <h4>ID: {id}</h4>} {/* Mostrar ID solo cuando esté editando */}
             <form>
                 <div>
                     <label>Nombre:</label>
                     <input type="text" name="nombre" value={genero.nombre} onChange={handleChange} />
                 </div>
                 <div className="button-container">
-                    {id ? (
+                    {isEditing ? (
                         <>
                             <button type="button" className="update-button" onClick={handleUpdate}>
                                 Modificar
