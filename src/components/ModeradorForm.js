@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getModById, updateModerador, deleteModerador, createMod } from '../services/moderadorService';
+import { getModById, updateModerador, deleteModerador, createMod, activateModerador } from '../services/moderadorService';
 import { FaArrowLeft } from 'react-icons/fa';
 import '../styles/ModeradorForm.css';
 
@@ -15,7 +15,8 @@ const ModeradorForm = () => {
         pwd: '',
         phone_number: '',
         username: '',
-        personal_ID: ''
+        personal_ID: '',
+        state: ''
     });
 
     useEffect(() => {
@@ -29,7 +30,8 @@ const ModeradorForm = () => {
                         pwd: data.pwd || '',
                         phone_number: data.user_detail?.phone_number || '',
                         username: data.user_detail?.username || '',
-                        personal_ID: data.user_detail?.personal_ID || ''
+                        personal_ID: data.user_detail?.personal_ID || '',
+                        state: data.state || ''
                     });
                     setLoading(false);
                 } catch (error) {
@@ -63,6 +65,15 @@ const ModeradorForm = () => {
     const handleDelete = async () => {
         try {
             await deleteModerador(id);
+            navigate('/moderadores'); 
+        } catch (error) {
+            console.error('Error al eliminar el moderador:', error);
+        }
+    };
+
+    const handleActivate = async () => {
+        try {
+            await activateModerador(id);
             navigate('/moderadores'); 
         } catch (error) {
             console.error('Error al eliminar el moderador:', error);
@@ -126,12 +137,15 @@ const ModeradorForm = () => {
                             <button type="button" className="update-button" onClick={handleUpdate}>
                                 Modificar
                             </button>
-                            {/*
-                                <button type="button" className="delete-button" onClick={handleDelete}>
-                                    Eliminar
+                            {moderador.state === 'created' || moderador.state === 'inactive' ? (
+                                <button type="button" className="create-button" onClick={handleActivate}>
+                                    Activar
                                 </button>
-                                */
-                            }
+                            ) : moderador.state === 'active' ? (
+                                <button type="button" className="delete-button" onClick={handleDelete}>
+                                    Desactivar
+                                </button>
+                            ) : null}
                         </>
                     ) : (
                         <button type="button" className="create-button" onClick={handleCreate}>

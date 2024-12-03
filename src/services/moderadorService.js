@@ -50,7 +50,17 @@ export const updateModerador = async (id, moderador) => {
 
 export const deleteModerador = async (id) => {
     try {
-        const response = await axios.delete(`${BASE_URL}/eliminar/${id}`);
+        const response = await axios.delete(`${BASE_URL}/approval/${id}`);
+        return response.data; 
+    } catch (error) {
+        console.error('Error al eliminar moderador:', error);
+        throw error;
+    }
+};
+
+export const activateModerador = async (id) => {
+    try {
+        const response = await axios.post(`${BASE_URL}/approval/${id}`);
         return response.data; 
     } catch (error) {
         console.error('Error al eliminar moderador:', error);
