@@ -65,7 +65,7 @@ const CategoriaForm = () => {
                 <FaArrowLeft /> Volver
             </div>
             <h2>{id ? 'Editar Categoria' : 'Agregar Categoria'}</h2>
-            {id && <h4>ID: {id}</h4>} 
+            {id && <h4>{categoria.nombre}</h4>} 
             <form>
                 <div>
                     <label>Nombre:</label>

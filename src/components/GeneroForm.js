@@ -65,7 +65,7 @@ const GeneroForm = () => {
                 <FaArrowLeft /> Volver
             </div>
             <h2>{isEditing ? 'Editar Genero' : 'Agregar Genero'}</h2>
-            {isEditing && <h4>ID: {id}</h4>} {/* Mostrar ID solo cuando esté editando */}
+            {isEditing && <h4>{genero.nombre}</h4>} {/* Mostrar ID solo cuando esté editando */}
             <form>
                 <div>
                     <label>Nombre:</label>

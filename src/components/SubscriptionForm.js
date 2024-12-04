@@ -67,7 +67,7 @@ const SubscriptionForm = () => {
                 <FaArrowLeft /> Volver
             </div>
             <h2>{id ? 'Editar Suscripción' : 'Agregar Suscripción'}</h2>
-            {id && <h4>ID: {id}</h4>} 
+            {id && <h4>{subscription.titulo}</h4>} 
             <form>
                 <div>
                     <label>Titulo</label>
