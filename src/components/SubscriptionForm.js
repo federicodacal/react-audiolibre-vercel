@@ -7,6 +7,7 @@ import '../styles/SubscriptionForm.css';
 const SubscriptionForm = () => {
     const { id } = useParams(); // Obtener el ID de la URL
     const isEditing = id && id !== 'nuevo';
+    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
     const [subscription, setSubscription] = useState({
         titulo: '',
@@ -35,8 +36,38 @@ const SubscriptionForm = () => {
         setSubscription({ ...subscription, [name]: value });
     };
 
+    const validate = () => {
+        const newErrors = {};
+
+        if (!subscription.type || subscription.type === '') {
+            newErrors.type = "El título es obligatorio.";
+        } else if (subscription.type.length < 1 || subscription.type.length > 20) {
+            newErrors.type = "El título debe contener entre 1 y 20 caracteres.";
+        }
+
+        if (!subscription.renewal_time_in_days || subscription.renewal_time_in_days <= 0) {
+            newErrors.renewal_time_in_days = "La duración debe ser un número mayor a 0.";
+        }
+ 
+        if (!subscription.monthly_price || subscription.monthly_price <= 0) {
+            newErrors.monthly_price = "El precio debe ser un número mayor a 0.";
+        }
+
+        if (!subscription.revenue_percentage || subscription.revenue_percentage < 0 || subscription.revenue_percentage > 100) {
+            newErrors.revenue_percentage = "El porcentaje debe estar entre 0 y 100.";
+        }
+
+        console.log(newErrors); 
+    
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
     const handleUpdate = async () => {
         try {
+
+            if(!validate()) return;
+
             await updateSubscription(id, subscription);
             navigate('/suscripciones'); // Redirigir a la lista de suscripciones
         } catch (error) {
@@ -64,6 +95,9 @@ const SubscriptionForm = () => {
 
     const handleCreate = async () => {
         try {
+
+            if(!validate()) return;
+
             await createSubscription(subscription);
             navigate('/suscripciones'); // Redirigir a la lista de suscripciones
         } catch (error) {
@@ -82,18 +116,22 @@ const SubscriptionForm = () => {
                 <div>
                     <label>Titulo</label>
                     <input type="text" name="type" value={subscription.type} onChange={handleChange} />
+                    {errors.type && <p className="text-red-500 font-bold">{errors.type}</p>}
                 </div>
                 <div>
                     <label>Duración (dias)</label>
                     <input type="number" name="renewal_time_in_days" value={subscription.renewal_time_in_days} onChange={handleChange} />
+                    {errors.renewal_time_in_days && <p className="text-red-500 font-bold">{errors.renewal_time_in_days}</p>}
                 </div>
                 <div>
                     <label>Precio $ (costo mensual)</label>
                     <input type="number" name="monthly_price" value={subscription.monthly_price} onChange={handleChange} />
+                    {errors.monthly_price && <p className="text-red-500 font-bold">{errors.monthly_price}</p>}
                 </div>
                 <div>
-                    <label>Porcentaje Plataforma</label>
+                    <label>Porcentaje Creador</label>
                     <input type="number" name="revenue_percentage" value={subscription.revenue_percentage} onChange={handleChange} />
+                    {errors.revenue_percentage && <p className="text-red-500 font-bold">{errors.revenue_percentage}</p>}
                 </div>
                 <div className="button-container">
                     {isEditing ? (

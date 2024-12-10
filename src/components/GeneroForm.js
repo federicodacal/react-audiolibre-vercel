@@ -7,6 +7,7 @@ import '../styles/GeneroForm.css';
 const GeneroForm = () => {
     const { id } = useParams(); // Obtener el ID de la URL
     const isEditing = id && id !== 'nueva';
+    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
     const [genero, setGenero] = useState({
         nombre: ''
@@ -32,8 +33,21 @@ const GeneroForm = () => {
         setGenero({ ...genero, [name]: value });
     };
 
+    const validate = () => {
+        const newErrors = {};
+
+        if (!genero.nombre || genero.nombre === '') newErrors.nombre = "El genero es obligatorio.";
+        else if (genero.nombre.length < 1 || genero.length > 15)
+        newErrors.nombre = "El genero debe contener entre 1 y 15 caracteres.";
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    }
+
     const handleUpdate = async () => {
         try {
+            if(!validate()) return;
+
             await updateGenero(id, genero);
             navigate('/generos'); 
         } catch (error) {
@@ -52,6 +66,9 @@ const GeneroForm = () => {
 
     const handleCreate = async () => {
         try {
+
+            if(!validate()) return
+            
             await createGenero(genero);
             navigate('/generos'); 
         } catch (error) {
@@ -70,6 +87,7 @@ const GeneroForm = () => {
                 <div>
                     <label>Nombre:</label>
                     <input type="text" name="nombre" value={genero.nombre} onChange={handleChange} />
+                    {errors.nombre && <p className="text-red-500 font-bold">{errors.nombre}</p>}
                 </div>
                 <div className="button-container">
                     {isEditing ? (

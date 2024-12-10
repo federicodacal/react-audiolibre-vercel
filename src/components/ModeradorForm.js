@@ -8,6 +8,7 @@ const ModeradorForm = () => {
     const { id } = useParams(); // Obtener el ID de la URL
     const isEditing = id && id !== 'nuevo';
     const navigate = useNavigate();
+    const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(true);
     const [moderador, setModerador] = useState({
         full_name: '',
@@ -52,8 +53,46 @@ const ModeradorForm = () => {
         setModerador({ ...moderador, [name]: value });
     };
 
+
+    const validate = () => {
+        const newErrors = {};
+
+        if (!moderador.full_name || moderador.full_name === '') newErrors.full_name = "El nombre completo es obligatorio.";
+        else if (moderador.full_name.length < 1 || moderador.length > 50)
+        newErrors.full_name = "El nombre debe contener entre 1 y 50 caracteres.";
+
+        if (!moderador.email || moderador.email === '') newErrors.email = "El email completo es obligatorio.";
+        else if (moderador.email && !/\S+@\S+\.\S+/.test(moderador.email))
+        newErrors.email = "El correo electrónico no es válido.";
+        else if (moderador.email.length < 1 || moderador.length > 50)
+        newErrors.email = "El email debe contener entre 1 y 50 caracteres.";
+
+        if (!moderador.username) newErrors.username = "El nombre de usuario es obligatorio.";
+        else if(moderador.username.length > 25) newErrors.username = "El nombre de usuario no puede superar los 25 caracteres";
+
+        if (!moderador.pwd) newErrors.pwd = "La contraseña es obligatoria.";
+        else if(moderador.pwd.length < 4) newErrors.pwd = "La clave debe contener mas de 4 caracteres";
+
+        if (!moderador.phone_number) {
+            newErrors.phone_number = "El teléfono es obligatorio.";
+        } else if (!/^\(?\d{2,5}\)?[-.\d]?\d{4}[-.\d]?\d{4}$/.test(moderador.phone_number)) {
+            newErrors.phone_number = "El número de teléfono no es válido. Ejemplos válidos: 11-34254334, (11)34254334";
+        }
+        if (!moderador.personal_ID) {
+            newErrors.personal_ID = "El DNI es obligatorio.";
+        } else if (!/^\d{7,11}$/.test(moderador.personal_ID)) { 
+            newErrors.personal_ID = "El DNI debe ser un número válido de entre 7 y 11 dígitos.";
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    }
+
     const handleUpdate = async () => {
         try {
+
+            if(!validate()) return;
+
             console.log('mod update ', moderador);
             await updateModerador(id, moderador);
             navigate('/moderadores'); 
@@ -82,6 +121,9 @@ const ModeradorForm = () => {
 
     const handleCreate = async () => {
         try {
+
+            if(!validate()) return;
+
             await createMod(moderador);
             navigate('/moderadores'); 
         } catch (error) {
@@ -104,20 +146,24 @@ const ModeradorForm = () => {
                 <div>
                     <label>Nombre completo:</label>
                     <input type="text" name="full_name" value={moderador.full_name} onChange={handleChange} />
+                    {errors.full_name && <p className="text-red-500 font-bold">{errors.full_name}</p>}
                 </div>
                 <div>
                     <label>Email:</label>
                     <input type="text" name="email" value={moderador.email} onChange={handleChange} readOnly={isEditing}/>
+                    {errors.email && <p className="text-red-500 font-bold">{errors.email}</p>}
                 </div>
                 <div>
                     <label>Username:</label>
                     <input type="text" name="username" value={moderador.username} onChange={handleChange} />
+                    {errors.username && <p className="text-red-500 font-bold">{errors.username}</p>}
                 </div>
                 <div>
                 {!isEditing ? (
                         <>
                     <label>Contraseña:</label>
                     <input type="password" name="pwd" value={moderador.pwd} onChange={handleChange} />
+                    {errors.pwd && <p className="text-red-500 font-bold">{errors.pwd}</p>}
                         </>
                     ) : (
                         <span></span>
@@ -126,10 +172,12 @@ const ModeradorForm = () => {
                 <div>
                     <label>Telefono:</label>
                     <input type="text" name="phone_number" value={moderador.phone_number} onChange={handleChange} />
+                    {errors.phone_number && <p className="text-red-500 font-bold">{errors.phone_number}</p>}
                 </div>
                 <div>
                     <label>DNI:</label>
                     <input type="text" name="personal_ID" value={moderador.personal_ID} onChange={handleChange} />
+                    {errors.personal_ID && <p className="text-red-500 font-bold">{errors.personal_ID}</p>}
                 </div>
                 <div className="button-container">
                     {isEditing ? (

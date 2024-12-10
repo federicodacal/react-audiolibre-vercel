@@ -7,6 +7,7 @@ import '../styles/CarrouselForm.css';
 const CarrouselForm = () => {
     const { id } = useParams(); // Obtener el ID de la URL
     const navigate = useNavigate();
+    const [errors, setErrors] = useState({});
     const [carrousel, setCarrousel] = useState({
         titulo: '',
         orden: '',
@@ -42,18 +43,43 @@ const CarrouselForm = () => {
     };
 
     const handleFileChange = (e) => {
+        const newErrors = {};
+
         const file = e.target.files[0];
         if (file && file.type.startsWith("image/")) {
             setCarrousel({ ...carrousel, img: file });
             setImgPreview(URL.createObjectURL(file)); // Establecer la URL de previsualización
         } else {
-            alert("Por favor, selecciona solo archivos de imagen (jpg, jpeg, png, etc.).");
+            newErrors.img = "La imagen es obligatoria.";
             e.target.value = ""; // Resetea el input si el archivo no es una imagen
         }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
     };
+
+    const validate = () => {
+        const newErrors = {};
+
+        if (!carrousel.titulo || carrousel.titulo === '') {
+            newErrors.titulo = "El título es obligatorio.";
+        } else if (carrousel.titulo.length < 1 || carrousel.titulo.length > 30) {
+            newErrors.titulo = "El título debe contener entre 1 y 30 caracteres.";
+        }
+
+        if (!carrousel.descripcion || carrousel.descripcion === '') {
+            newErrors.descripcion = "La descripción es obligatoria.";
+        } else if (carrousel.descripcion.length < 1 || carrousel.descripcion.length > 200) {
+            newErrors.descripcion = "La descripción debe contener entre 1 y 200 caracteres.";
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    }
 
     const handleUpdate = async () => {
         try {
+            if (!validate()) return;
             const response = await updateCarrouselElement(id, carrousel);
             console.log('update: ', response.data);
             console.log('carrousel: ', carrousel);
@@ -73,13 +99,12 @@ const CarrouselForm = () => {
     };
 
     const handleCreate = async () => {
-
-        if (!carrousel.img) {
-            alert("Por favor, selecciona una imagen antes de enviar.");
-            return;
-        }
-        
         try {
+            if (!carrousel.img) {
+                alert("La imagen es obligatoria.");
+            }
+            if (!validate()) return;
+
             await createCarrouselElement(carrousel);
             navigate('/carrousel'); // Redirigir a la lista de carrousel
         } catch (error) {
@@ -98,10 +123,12 @@ const CarrouselForm = () => {
                 <div>
                     <label>Titulo</label>
                     <input type="text" name="titulo" value={carrousel.titulo} onChange={handleChange} />
+                    {errors.titulo && <p className="text-red-500 font-bold">{errors.titulo}</p>}
                 </div>
                 <div>
                     <label>Descripción</label>
                     <textarea type="text" name="descripcion" value={carrousel.descripcion} onChange={handleChange} />
+                    {errors.descripcion && <p className="text-red-500 font-bold">{errors.descripcion}</p>}
                 </div>
                 <div>
                     <label>Ruta</label>
@@ -123,6 +150,7 @@ const CarrouselForm = () => {
                             <img crossorigin="anonymous" src={imgPreview} alt="Previsualización" className="img-preview" />
                         )
                     )}
+                    {errors.img && <p className="text-red-500 font-bold">{errors.img}</p>}
                 </div>
 
 
