@@ -38,14 +38,15 @@ const Subscriptions = () => {
             <div className="subscriptions-list">
                 {subscriptions.map((subscription) => (
                     <div className="subscription-card" key={subscription._id}>
-                        <h5 className="centered-text"><strong>{subscription.titulo.toUpperCase()}</strong></h5>
-                        <p><strong>Titulo:</strong> {subscription.titulo}</p>
-                        <p><strong>Duración (dias):</strong> {subscription.duracion_dias}</p>
-                        <p><strong>Precio $ (costo mensual):</strong> {subscription.precio}</p>
-                        <p><strong>Porcentaje Plataforma:</strong> {subscription.porcentaje_plataforma}%</p>
-                        <p><strong>Fecha Creación:</strong> {new Date(subscription.fecha_creacion).toLocaleString()}</p>
-                        <p><strong>Fecha Modificación:</strong> {new Date(subscription.fecha_modificacion).toLocaleString()}</p>
-                        <button className="view-details-btn" onClick={() => handleViewDetails(subscription.id)}>
+                        <h5 className="centered-text"><strong>{subscription.type.toUpperCase()}</strong></h5>
+                        <p><strong>Titulo:</strong> {subscription.type}</p>
+                        <p><strong>Duración (dias):</strong> {subscription.renewal_time_in_days}</p>
+                        <p><strong>Precio $ (costo mensual):</strong> {subscription.monthly_price}</p>
+                        <p><strong>Porcentaje Plataforma:</strong> {subscription.revenue_percentage}%</p>
+                        <p><strong>Estado:</strong> {subscription.state}</p>
+                        <p><strong>Fecha Creación:</strong> {new Date(subscription.created_at).toLocaleString()}</p>
+                        <p><strong>Fecha Modificación:</strong> {new Date(subscription.modified_at).toLocaleString()}</p>
+                        <button className="view-details-btn" onClick={() => handleViewDetails(subscription.ID)}>
                             <FaSearch /> {/* Icono de lupa */}
                         </button>
                     </div>

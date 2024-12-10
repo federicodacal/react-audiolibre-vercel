@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5000/login';
+const BASE_URL = 'https://admin-audiolibre-api.vercel.app/login';
 
 export const login = async (user) => {
     try {

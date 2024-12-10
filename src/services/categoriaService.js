@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5000/api/categorias';
+const BASE_URL = 'https://pps-flask-api.vercel.app/categories';
 
 export const getCategorias = async () => {
     try {
@@ -36,7 +36,7 @@ export const createCategoria = async (categoria) => {
 
 export const updateCategoria = async (id, categoria) => {
     try {
-        const response = await axios.put(`${BASE_URL}/modificar/${id}`, categoria);
+        const response = await axios.put(`${BASE_URL}/${id}`, categoria);
         return response.data; 
     } catch (error) {
         console.error('Error al actualizar la categoria:', error);
@@ -46,7 +46,7 @@ export const updateCategoria = async (id, categoria) => {
 
 export const deleteCategoria = async (id) => {
     try {
-        const response = await axios.delete(`${BASE_URL}/eliminar/${id}`);
+        const response = await axios.delete(`${BASE_URL}/${id}`);
         return response.data; 
     } catch (error) {
         console.error('Error al eliminar la categoria:', error);

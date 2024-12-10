@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5000/api/carrousel';
+const BASE_URL = 'https://pps-flask-api.vercel.app/carrousel';
+const DEV_URL = 'http://127.0.0.1:5000/carrousel';
 
 export const getCarrousel = async () => {
     try {
@@ -27,7 +28,7 @@ export const getCarrouselElementById = async (id) => {
 export const createCarrouselElement = async (carrouselElement) => {
     try {
         const formData = new FormData();
-        formData.append("img", carrouselElement.img); // Archivo de imagen
+        formData.append("file", carrouselElement.img); // Archivo de imagen
         formData.append("titulo", carrouselElement.titulo);
         formData.append("orden", carrouselElement.orden);
         formData.append("descripcion", carrouselElement.descripcion);
@@ -50,7 +51,7 @@ export const createCarrouselElement = async (carrouselElement) => {
 
 export const updateCarrouselElement = async (id, carrouselElement) => {
     try {
-        const response = await axios.put(`${BASE_URL}/modificar/${id}`, carrouselElement);
+        const response = await axios.put(`${BASE_URL}/${id}`, carrouselElement);
         return response.data; 
     } catch (error) {
         console.error('Error al actualizar el elemento del carrousel:', error);
@@ -60,7 +61,7 @@ export const updateCarrouselElement = async (id, carrouselElement) => {
 
 export const deleteCarrouselElement = async (id) => {
     try {
-        const response = await axios.delete(`${BASE_URL}/eliminar/${id}`);
+        const response = await axios.delete(`${BASE_URL}/${id}`);
         return response.data; 
     } catch (error) {
         console.error('Error al eliminar el elemento del carrousel:', error);

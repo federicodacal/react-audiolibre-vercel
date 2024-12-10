@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5000/api/generos';
+const BASE_URL = 'https://pps-flask-api.vercel.app/genres';
 
 export const getGeneros = async () => {
     try {
@@ -35,7 +35,7 @@ export const createGenero = async (genero) => {
 
 export const updateGenero = async (id, genero) => {
     try {
-        const response = await axios.put(`${BASE_URL}/modificar/${id}`, genero);
+        const response = await axios.put(`${BASE_URL}/${id}`, genero);
         return response.data; 
     } catch (error) {
         console.error('Error al actualizar el genero:', error);
@@ -45,7 +45,7 @@ export const updateGenero = async (id, genero) => {
 
 export const deleteGenero = async (id) => {
     try {
-        const response = await axios.delete(`${BASE_URL}/eliminar/${id}`);
+        const response = await axios.delete(`${BASE_URL}/${id}`);
         return response.data; 
     } catch (error) {
         console.error('Error al eliminar el genero:', error);

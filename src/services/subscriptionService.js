@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5000/api/suscripciones';
+const BASE_URL = 'https://pps-flask-api.vercel.app/subscriptions';
 
 export const getSusbscriptions = async () => {
     try {
@@ -35,7 +35,7 @@ export const createSubscription = async (subscription) => {
 
 export const updateSubscription = async (id, subscription) => {
     try {
-        const response = await axios.put(`${BASE_URL}/modificar/${id}`, subscription);
+        const response = await axios.put(`${BASE_URL}/${id}`, subscription);
         return response.data; 
     } catch (error) {
         console.error('Error al actualizar la suscripción:', error);
@@ -43,12 +43,22 @@ export const updateSubscription = async (id, subscription) => {
     }
 };
 
-export const deleteSubscription = async (id) => {
+export const deleteSuscripcion = async (id) => {
     try {
-        const response = await axios.delete(`${BASE_URL}/eliminar/${id}`);
+        const response = await axios.put(`${BASE_URL}/inactive/${id}`);
         return response.data; 
     } catch (error) {
-        console.error('Error al eliminar la suscripción:', error);
+        console.error('Error al desactivar suscripcion:', error);
+        throw error;
+    }
+};
+
+export const activateSuscripcion = async (id) => {
+    try {
+        const response = await axios.put(`${BASE_URL}/active/${id}`);
+        return response.data; 
+    } catch (error) {
+        console.error('Error al activar suscripcion:', error);
         throw error;
     }
 };
