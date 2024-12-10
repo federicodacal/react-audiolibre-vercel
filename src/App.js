@@ -17,6 +17,7 @@ import Genero from './components/Generos';
 import GeneroForm from './components/GeneroForm';
 import Moderadores from './components/Moderadores';
 import PrivateRoute from './components/PrivateRoute';
+import ReportsPage from './components/Reports';
 
 const App = () => {
     return (
@@ -142,6 +143,14 @@ const App = () => {
                 {
                   <PrivateRoute>
                     <GeneroForm />
+                  </PrivateRoute>
+                } 
+              />
+
+              <Route path="/reportes" element=
+                {
+                  <PrivateRoute>
+                    <ReportsPage />
                   </PrivateRoute>
                 } 
               />
